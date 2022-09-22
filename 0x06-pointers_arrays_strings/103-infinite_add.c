@@ -5,23 +5,22 @@
  * @s: string to be encoded
  * Return: the resulting strring
  */
-char *rot13(char *s)
+ar *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
-	int i, j;
+	int index, n1_len = 0, n2_len = 0;
 
-	char a[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-	char b[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
+	for (index = 0; *(n1 + index); index++)
+		n1_len++;
 
-	for (i = 0; s[i] != '\0'; i++)
-	{
-		for (j = 0; a[j] != '\0'; j++)
-		{
-			if (s[i] == a[j])
-			{
-				s[i] = b[j];
-				break;
-			}
-	    }
-	}
-	return (s);
+	for (index = 0; *(n2 + index); index++)
+		n2_len++;
+
+	if (size_r <= n1_len + 1 || size_r <= n2_len + 1)
+		return (0);
+
+	n1 += n1_len - 1;
+	n2 += n2_len - 1;
+	*(r + size_r) = '\0';
+
+	return (add_strings(n1, n2, r, --size_r));
 }
