@@ -1,47 +1,27 @@
 #include "main.h"
 
 /**
-* infinite_add - C function that adds two numbers stored
-*in strings to a buffer.
-*Return:returns pointer to result
-*/
-
-char *infinite_add(char *n1, char *n2, char *r, int size_r)
+ * rot13 - encodes a string in rot13
+ * @s: string to be encoded
+ * Return: the resulting strring
+ */
+char *rot13(char *s)
 {
-}
+	int i, j;
 
-/**
-* add_strings - Adds the numbers stored in two strings.
-* @n1: The string containing the first number to be added.
-* @n2: The string containing the second number to be added.
-* @r: The buffer to store the result.
-* @r_index: The current index of the buffer.
-*/
+	char a[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	char b[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
 
-char *add_strings(char *n1, char *n2, char *r, int r_index)
-{
-        int num, tens = 0;
-
-        for (; *n1 && *n2; n1--, n2--, r_index--)
-        {
-                num = (*n1 - '0') + (*n2 - '0');
-                num += tens;
-                *(r + r_index) = (num % 10) + '0';
-                tens = num / 10;
-        }
-
-        for (; *n1; n1--; r_index++)
-        {
-                num = *(n1 - '0') + tens;
-                *(r + r_index) = (num % 10) + '0';
-                tens = num / 10;
-        }
-
-        for (; *n2; n2--;  r_index--)
-        {
-                num = (*n2 - '0') + tens;
-                *(r + r_index) = (num % 10) + '0';
-                tens = num / 10;
-        }
-
+	for (i = 0; s[i] != '\0'; i++)
+	{
+		for (j = 0; a[j] != '\0'; j++)
+		{
+			if (s[i] == a[j])
+			{
+				s[i] = b[j];
+				break;
+			}
+	    }
+	}
+	return (s);
 }
