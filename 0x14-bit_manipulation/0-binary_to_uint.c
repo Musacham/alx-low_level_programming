@@ -1,71 +1,47 @@
-#include "main.h"
 #include <stdlib.h>
+#include <stdio.h>
+#include "main.h"
 
 /**
- * _strlen - gets the lenght of input strings
- * @str: input string
- * Return: len of the string
- */
-
-int _strlen(const char *str)
-{
-	int len = 0;
-
-	while (*str)
-	{
-		len++;
-		str++;
-	}
-	return (len);
-}
-
-/**
- * _to_power - prints the power of numbers
- * @base: base parameter
- * @power: power parameter
- * Return: product of two numbers
- */
-
-int _to_power(const int base, int power)
-{
-	int product = 1;
-
-	while (power > 1)
-	{
-		product *= base;
-		power++;
-	}
-	return (product);
-}
-
-/**
- * binary_to_uint - converts a binary number to an unsigned int
- * @b: input value
- * Return: converted number, or 0 if b is NULL
- */
-
+  * binary_to_uint - Converts a binary number to an unsigned int
+  * @b: The binary string to converts
+  *
+  * Return: The positive number converted from a binary
+  */
 unsigned int binary_to_uint(const char *b)
 {
-	int power, num;
+        unsigned int len = 0, count = 0, sum = 0;
 
-	power = _strlen(b) - 1;
-	num = 0;
-	if (!b)
-	{
-		return (0);
-	}
-	while (*b)
-	{
-		if (!(*b == '0' || *b == '1'))
-		{
-			return (0);
-		}
-		if (*b == '1')
-		{
-			num += _to_power(2, power);
-		}
-		b++;
-		power--;
-	}
-	return (num);
+        if (b == NULL)
+                return (0);
+
+        len = _strlen(b);
+        while (len--)
+        {
+                if (b[len] != 48 && b[len] != 49)
+                        return (0);
+
+                if (b[len] == 49)
+                        sum += 1 << count;
+
+                count++;
+        }
+
+        return (sum);
+}
+
+/**
+  * _strlen - Returns the length of a string
+  * @s: String to count
+  *
+  * Return: String length
+  */
+int _strlen(const char *s)
+{
+        int c = 0;
+
+        while (s[c])
+                c++;
+
+        return (c);
 }
